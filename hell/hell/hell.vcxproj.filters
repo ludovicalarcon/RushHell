@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\charon">
+      <UniqueIdentifier>{ddf5185e-568c-4ba5-ac8e-97486a6dc3e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\charon">
+      <UniqueIdentifier>{017ffe33-4189-4b23-a1ed-02118e2e79f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\charon\etape1">
+      <UniqueIdentifier>{90ebab41-2cf0-4ac9-80bb-5eb436b938ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\charon\etape1">
+      <UniqueIdentifier>{554f31bc-c23c-476e-8faa-4d6e237f831c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\charon\etape2">
+      <UniqueIdentifier>{54a09668-987f-4349-a448-a5fcb1e12a53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\charon\etape2">
+      <UniqueIdentifier>{e9d24388-ce80-4710-98d3-8a9789f8317e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\purgatory">
+      <UniqueIdentifier>{cff3bcc9-bdee-442d-8c76-8cfe36a9c738}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\purgatory\etape1">
+      <UniqueIdentifier>{283d18cc-464b-469d-9641-b8c0717b3471}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\purgatory">
+      <UniqueIdentifier>{c6e852ba-1b23-47a9-94c9-0f568b947488}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\purgatory\etape1">
+      <UniqueIdentifier>{4bea5afa-5e3e-4a5b-8313-ac37ebecb49b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\purgatory\etape2">
+      <UniqueIdentifier>{925940d5-f68a-4c76-84e9-695ba97ee655}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\purgatory\etape2">
+      <UniqueIdentifier>{5889cc17-6ed3-4054-98f7-6d25cce09db4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="charon\etape1\main.cpp">
+      <Filter>Source Files\charon\etape1</Filter>
+    </ClCompile>
+    <ClCompile Include="charon\etape2\main.cpp">
+      <Filter>Source Files\charon\etape2</Filter>
+    </ClCompile>
+    <ClCompile Include="purgatory\etape1\Machine.cpp">
+      <Filter>Source Files\purgatory\etape1</Filter>
+    </ClCompile>
+    <ClCompile Include="purgatory\etape1\main.cpp">
+      <Filter>Source Files\purgatory\etape1</Filter>
+    </ClCompile>
+    <ClCompile Include="purgatory\etape2\Machine.cpp">
+      <Filter>Source Files\purgatory\etape2</Filter>
+    </ClCompile>
+    <ClCompile Include="purgatory\etape2\main.cpp">
+      <Filter>Source Files\purgatory\etape2</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="charon\etape1\FunctionSignature.hpp">
+      <Filter>Header Files\charon\etape1</Filter>
+    </ClInclude>
+    <ClInclude Include="charon\etape2\Function.hpp">
+      <Filter>Header Files\charon\etape2</Filter>
+    </ClInclude>
+    <ClInclude Include="purgatory\etape1\Machine.hpp">
+      <Filter>Header Files\purgatory\etape1</Filter>
+    </ClInclude>
+    <ClInclude Include="purgatory\etape2\Machine.hpp">
+      <Filter>Header Files\purgatory\etape2</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
