@@ -77,6 +77,7 @@ namespace Placeholder
 	_Ph<1>	_1;
 	_Ph<2>	_2;
 	_Ph<3>	_3;
+	_Ph<4>	_4;
 }
 
 template <typename ReturnType, typename Callable, typename List> class Caller
@@ -87,13 +88,44 @@ template <typename ReturnType, typename Callable, typename List> class Caller
 public:
 	Caller(Callable callable, List list) : _callable(callable), _list(list) {}
 
-	ReturnType	operator()(void) { return (_list(TypeTraits<ReturnType>(), _callable, _list)); }
-	template <typename T1>
-	ReturnType	operator()(T1 &&t1)
+	ReturnType	operator()(void)
+	{
+		typedef TypeList0	ListType;
+		ListType			args;
+		return (_list(TypeTraits<ReturnType>(), _callable, _list, args));
+	}
+	template <typename T1> ReturnType	operator()(T1 &&t1)
 	{
 		typedef typename GetType<T1>::Type	P1;
 		typedef TypeList1<P1>				ListType;
 		ListType							args(t1);
+		return (_list(TypeTraits<ReturnType>(), _callable, _list, args));
+	}
+	template <typename T1, typename T2> ReturnType	operator()(T1 &&t1, T2 &&t2)
+	{
+		typedef typename GetType<T1>::Type	P1;
+		typedef typename GetType<T2>::Type	P2;
+		typedef TypeList2<P1, P2>			ListType;
+		ListType							args(t1, t2);
+		return (_list(TypeTraits<ReturnType>(), _callable, _list, args));
+	}
+	template <typename T1, typename T2, typename T3> ReturnType	operator()(T1 &&t1, T2 &&t2, T3 &&t3)
+	{
+		typedef typename GetType<T1>::Type	P1;
+		typedef typename GetType<T2>::Type	P2;
+		typedef typename GetType<T3>::Type	P3;
+		typedef TypeList3<P1, P2, P3>		ListType;
+		ListType							args(t1, t2, t3);
+		return (_list(TypeTraits<ReturnType>(), _callable, _list, args));
+	}
+	template <typename T1, typename T2, typename T3, typename T4> ReturnType	operator()(T1 &&t1, T2 &&t2, T3 &&t3, T4 &&t4)
+	{
+		typedef typename GetType<T1>::Type	P1;
+		typedef typename GetType<T2>::Type	P2;
+		typedef typename GetType<T3>::Type	P3;
+		typedef typename GetType<T4>::Type	P4;
+		typedef TypeList4<P1, P2, P3, P4>	ListType;
+		ListType							args(t1, t2, t3, t4);
 		return (_list(TypeTraits<ReturnType>(), _callable, _list, args));
 	}
 };
@@ -106,7 +138,46 @@ template <typename Callable, typename List> class Caller<void, Callable, List>
 public:
 	Caller(Callable callable, List list) : _callable(callable), _list(list) {}
 
-	void	operator()(void) { _list(TypeTraits<void>(), _callable, _list); }
+	void	operator()(void)
+	{
+		typedef TypeList0	ListType;
+		ListType			args;
+		_list(TypeTraits<void>(), _callable, _list, args);
+	}
+	template <typename T1> void	operator()(T1 &&t1)
+	{
+		typedef typename GetType<T1>::Type	P1;
+		typedef TypeList1<P1>				ListType;
+		ListType							args(t1);
+		_list(TypeTraits<ReturnType>(), _callable, _list, args);
+	}
+	template <typename T1, typename T2> void	operator()(T1 &&t1, T2 &&t2)
+	{
+		typedef typename GetType<T1>::Type	P1;
+		typedef typename GetType<T2>::Type	P2;
+		typedef TypeList2<P1, P2>			ListType;
+		ListType							args(t1, t2);
+		_list(TypeTraits<ReturnType>(), _callable, _list, args);
+	}
+	template <typename T1, typename T2, typename T3> void	operator()(T1 &&t1, T2 &&t2, T3 &&t3)
+	{
+		typedef typename GetType<T1>::Type	P1;
+		typedef typename GetType<T2>::Type	P2;
+		typedef typename GetType<T3>::Type	P3;
+		typedef TypeList3<P1, P2, P3>		ListType;
+		ListType							args(t1, t2, t3);
+		_list(TypeTraits<ReturnType>(), _callable, _list, args);
+	}
+	template <typename T1, typename T2, typename T3, typename T4> void	operator()(T1 &&t1, T2 &&t2, T3 &&t3, T4 &&t4)
+	{
+		typedef typename GetType<T1>::Type	P1;
+		typedef typename GetType<T2>::Type	P2;
+		typedef typename GetType<T3>::Type	P3;
+		typedef typename GetType<T4>::Type	P4;
+		typedef TypeList4<P1, P2, P3, P4>	ListType;
+		ListType							args(t1, t2, t3, t4);
+		_list(TypeTraits<ReturnType>(), _callable, _list, args);
+	}
 };
 
 
@@ -116,33 +187,31 @@ struct TypeList0 : private Storage0
 
 	TypeList0() : BaseClass(){}
 
+	template <typename T> T	&operator[](T &value) { return (value); }
 	template <typename T>
 	T	&operator[](Value<T> &value) { return (value.get()); }
 
-	template <typename ReturnType, typename Caller, typename List>
-	ReturnType operator()(TypeTraits<ReturnType>, Caller& caller, List& list)
+	template <typename ReturnType, typename Caller, typename List, typename Args>
+	ReturnType operator()(TypeTraits<ReturnType>, Caller& caller, List& list, Args &args)
 	{
 		return (caller());
 	}
 };
 
-template <typename P1> struct TypeList1;
-template <typename P1> struct TypeList1<Value<P1>> : private Storage1<Value<P1>>
-{
-	typedef Storage1<Value<P1>> BaseClass;
+#define V(p) Value<P##p>
 
-	TypeList1(Value<P1> p1) : BaseClass(p1){}
+template <typename P1> struct TypeList1;
+template <typename P1> struct TypeList1<V(1)> : private Storage1<V(1)>
+{
+	typedef Storage1<V(1)> BaseClass;
+
+	TypeList1(V(1) p1) : BaseClass(p1){}
 
 	template <typename T> T	&operator[](T &value) { return (value); }
 	P1	&operator[](Placeholder::_Ph<1>) { return (BaseClass::_t1.get()); }
 	template <typename T>
 	T	&operator[](Value<T> &value) { return (value.get()); }
 
-	template <typename ReturnType, typename Caller, typename List>
-	ReturnType operator()(TypeTraits<ReturnType>, Caller& caller, List& list)
-	{
-		return (caller(list[BaseClass::_t1]));
-	}
 	template <typename ReturnType, typename Caller, typename List, typename Args>
 	ReturnType operator()(TypeTraits<ReturnType>, Caller& caller, List& list, Args &args)
 	{
@@ -150,88 +219,110 @@ template <typename P1> struct TypeList1<Value<P1>> : private Storage1<Value<P1>>
 	}
 };
 
-template <typename P1, typename P2>
-struct TypeList2 : private Storage2<P1, P2>
+template <typename P1, typename P2> struct TypeList2;
+template <typename P1, typename P2> struct TypeList2<V(1), V(2)> : private Storage2<V(1), V(2)>
 {
-	typedef Storage2<P1, P2> BaseClass;
+	typedef Storage2<V(1), V(2)> BaseClass;
 
-	TypeList2(P1 p1, P2 p2) : BaseClass(p1, p2){}
+	TypeList2(V(1) p1, V(2) p2) : BaseClass(p1, p2){}
 
+	template <typename T> T	&operator[](T &value) { return (value); }
+	P1	&operator[](Placeholder::_Ph<1>) { return (BaseClass::_t1.get()); }
+	P2	&operator[](Placeholder::_Ph<2>) { return (BaseClass::_t2.get()); }
 	template <typename T>
 	T	&operator[](Value<T> &value) { return (value.get()); }
 
-	template <typename ReturnType, typename Caller, typename List>
-	ReturnType operator()(TypeTraits<ReturnType>, Caller& caller, List& list)
+	template <typename ReturnType, typename Caller, typename List, typename Args>
+	ReturnType operator()(TypeTraits<ReturnType>, Caller& caller, List& list, Args &args)
 	{
-		return (caller(list[BaseClass::_t1], list[BaseClass::_t2]));
+		return (caller(args[list[BaseClass::_t1]], args[list[BaseClass::_t2]]));
 	}
 };
 
-template <typename P1, typename P2, typename P3>
-struct TypeList3 : private Storage3<P1, P2, P3>
+template <typename P1, typename P2, typename P3> struct TypeList3;
+template <typename P1, typename P2, typename P3> struct TypeList3<V(1), V(2), V(3)> : private Storage3<V(1), V(2), V(3)>
 {
-	typedef Storage3<P1, P2, P3> BaseClass;
+	typedef Storage3<V(1), V(2), V(3)> BaseClass;
 
-	TypeList3(P1 p1, P2 p2, P3 p3) : BaseClass(p1, p2, p3){}
+	TypeList3(V(1) p1, V(2) p2, V(3) p3) : BaseClass(p1, p2, p3){}
 
+	template <typename T> T	&operator[](T &value) { return (value); }
+	P1	&operator[](Placeholder::_Ph<1>) { return (BaseClass::_t1.get()); }
+	P2	&operator[](Placeholder::_Ph<2>) { return (BaseClass::_t2.get()); }
+	P3	&operator[](Placeholder::_Ph<3>) { return (BaseClass::_t3.get()); }
 	template <typename T>
 	T	&operator[](Value<T> &value) { return (value.get()); }
 
-	template <typename ReturnType, typename Caller, typename List>
-	ReturnType operator()(TypeTraits<ReturnType>, Caller& caller, List& list)
+	template <typename ReturnType, typename Caller, typename List, typename Args>
+	ReturnType operator()(TypeTraits<ReturnType>, Caller& caller, List& list, Args &args)
 	{
-		return (caller(list[BaseClass::_t1], list[BaseClass::_t2], list[BaseClass::_t3]));
+		return (caller(args[list[BaseClass::_t1]], args[list[BaseClass::_t2]], args[list[BaseClass::_t3]]));
 	}
 };
 
-template <typename P1, typename P2, typename P3, typename P4>
-struct TypeList4 : private Storage4<P1, P2, P3, P4>
+template <typename P1, typename P2, typename P3, typename P4> struct TypeList4;
+template <typename P1, typename P2, typename P3, typename P4> struct TypeList4<V(1), V(2), V(3), V(4)> : private Storage4<V(1), V(2), V(3), V(4)>
 {
-	typedef Storage4<P1, P2, P3, P4> BaseClass;
+	typedef Storage4<V(1), V(2), V(3), V(4)> BaseClass;
 
-	TypeList4(P1 p1, P2 p2, P3 p3, P4 p4) : BaseClass(p1, p2, p3, p4){}
+	TypeList4(V(1) p1, V(2) p2, V(3) p3, V(4) p4) : BaseClass(p1, p2, p3, p4){}
 
+	template <typename T> T	&operator[](T &value) { return (value); }
+	P1	&operator[](Placeholder::_Ph<1>) { return (BaseClass::_t1.get()); }
+	P2	&operator[](Placeholder::_Ph<2>) { return (BaseClass::_t2.get()); }
+	P3	&operator[](Placeholder::_Ph<3>) { return (BaseClass::_t3.get()); }
+	P4	&operator[](Placeholder::_Ph<4>) { return (BaseClass::_t4.get()); }
 	template <typename T>
 	T	&operator[](Value<T> &value) { return (value.get()); }
 
-	template <typename ReturnType, typename Caller, typename List>
-	ReturnType operator()(TypeTraits<ReturnType>, Caller& caller, List& list)
+	template <typename ReturnType, typename Caller, typename List, typename Args>
+	ReturnType operator()(TypeTraits<ReturnType>, Caller& caller, List& list, Args &args)
 	{
-		return (caller(list[BaseClass::_t1], list[BaseClass::_t2], list[BaseClass::_t3], list[BaseClass::_t4]));
+		return (caller(args[list[BaseClass::_t1]], args[list[BaseClass::_t2]], args[list[BaseClass::_t3]], args[list[BaseClass::_t4]]));
 	}
 };
 
-template <typename P1, typename P2, typename P3, typename P4, typename P5>
-struct TypeList5 : private Storage5<P1, P2, P3, P4, P5>
+template <typename P1, typename P2, typename P3, typename P4, typename P5> struct TypeList5;
+template <typename P1, typename P2, typename P3, typename P4, typename P5> struct TypeList5<V(1), V(2), V(3), V(4), V(5)> : private Storage5<V(1), V(2), V(3), V(4), V(5)>
 {
-	typedef Storage5<P1, P2, P3, P4, P5> BaseClass;
+	typedef Storage5<V(1), V(2), V(3), V(4), V(5)> BaseClass;
 
-	TypeList5(P1 p1, P2 p2, P3 p3, P4 p4, P5 p5) : BaseClass(p1, p2, p3, p4, p5){}
+	TypeList5(V(1) p1, V(2) p2, V(3) p3, V(4) p4, V(5) p5) : BaseClass(p1, p2, p3, p4, p5){}
 
+	template <typename T> T	&operator[](T &value) { return (value); }
+	P1	&operator[](Placeholder::_Ph<1>) { return (BaseClass::_t1.get()); }
+	P2	&operator[](Placeholder::_Ph<2>) { return (BaseClass::_t2.get()); }
+	P3	&operator[](Placeholder::_Ph<3>) { return (BaseClass::_t3.get()); }
+	P4	&operator[](Placeholder::_Ph<4>) { return (BaseClass::_t4.get()); }
 	template <typename T>
 	T	&operator[](Value<T> &value) { return (value.get()); }
 
-	template <typename ReturnType, typename Caller, typename List>
-	ReturnType operator()(TypeTraits<ReturnType>, Caller& caller, List& list)
+	template <typename ReturnType, typename Caller, typename List, typename Args>
+	ReturnType operator()(TypeTraits<ReturnType>, Caller& caller, List& list, Args &args)
 	{
-		return (caller(list[BaseClass::_t1], list[BaseClass::_t2], list[BaseClass::_t3], list[BaseClass::_t4], list[BaseClass::_t5]));
+		return (caller(args[list[BaseClass::_t1]], args[list[BaseClass::_t2]], args[list[BaseClass::_t3]], args[list[BaseClass::_t4]], args[list[BaseClass::_t5]]));
 	}
 };
 
-template <typename P1, typename P2, typename P3, typename P4, typename P5, typename P6>
-struct TypeList6 : private Storage6<P1, P2, P3, P4, P5, P6>
+template <typename P1, typename P2, typename P3, typename P4, typename P5, typename P6> struct TypeList6;
+template <typename P1, typename P2, typename P3, typename P4, typename P5, typename P6> struct TypeList6<V(1), V(2), V(3), V(4), V(5), V(6)> : private Storage6<V(1), V(2), V(3), V(4), V(5), V(6)>
 {
-	typedef Storage6<P1, P2, P3, P4, P5, P6> BaseClass;
+	typedef Storage6<V(1), V(2), V(3), V(4), V(5), V(6)> BaseClass;
 
-	TypeList6(P1 p1, P2 p2, P3 p3, P4 p4, P5 p5, P6 p6) : BaseClass(p1, p2, p3, p4, p5, p6){}
+	TypeList6(V(1) p1, V(2) p2, V(3) p3, V(4) p4, V(5) p5, V(6) p6) : BaseClass(p1, p2, p3, p4, p5, p6){}
 
+	template <typename T> T	&operator[](T &value) { return (value); }
+	P1	&operator[](Placeholder::_Ph<1>) { return (BaseClass::_t1.get()); }
+	P2	&operator[](Placeholder::_Ph<2>) { return (BaseClass::_t2.get()); }
+	P3	&operator[](Placeholder::_Ph<3>) { return (BaseClass::_t3.get()); }
+	P4	&operator[](Placeholder::_Ph<4>) { return (BaseClass::_t4.get()); }
 	template <typename T>
 	T	&operator[](Value<T> &value) { return (value.get()); }
 
-	template <typename ReturnType, typename Caller, typename List>
-	ReturnType operator()(TypeTraits<ReturnType>, Caller& caller, List& list)
+	template <typename ReturnType, typename Caller, typename List, typename Args>
+	ReturnType operator()(TypeTraits<ReturnType>, Caller& caller, List& list, Args &args)
 	{
-		return (caller(list[BaseClass::_t1], list[BaseClass::_t2], list[BaseClass::_t3], list[BaseClass::_t4], list[BaseClass::_t5], list[BaseClass::_t6]));
+		return (caller(args[list[BaseClass::_t1]], args[list[BaseClass::_t2]], args[list[BaseClass::_t3]], args[list[BaseClass::_t4]], args[list[BaseClass::_t5]], args[list[BaseClass::_t6]]));
 	}
 };
 

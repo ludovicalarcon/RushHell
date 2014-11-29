@@ -24,13 +24,14 @@
 #include "../charon/etape2/Function.hpp"
 
 #include <iostream>
+#include <string>
 
 struct tot
 {
 	tot(void) {}
-int f(char c)
+int f(char c, std::string const &titi)
 {
-	std::cout << c << std::endl;
+	std::cout << c << " " << titi << std::endl;
 	return (1);
 }
 private:
@@ -43,12 +44,14 @@ private:
 int main()
 {
 	tot toto;
-	auto to = std::bind(&tot::f, &toto, std::placeholders::_1);
-	to('&');
-	Function<int(char)>	func = bind(&tot::f, &toto, Placeholder::_1);
+
+	Function<int(char)>	func = bind(&tot::f, &toto, Placeholder::_1, "toto");
 	std::cout << func('&') << std::endl;
 
-	Function<int(void)>	fnc = bind(&tot::f, &toto, 'a');
-	std::cout << fnc() << std::endl;
+	Function<int(std::string const &)>	fnc = bind(&tot::f, &toto, 'a', Placeholder::_1);
+	std::cout << fnc("titi") << std::endl;
+
+	Function<int(char, std::string const &)>	fc = bind(&tot::f, &toto, Placeholder::_1, Placeholder::_2);
+	std::cout << fc('z', "tutu") << std::endl;
 	return (0);
 }
