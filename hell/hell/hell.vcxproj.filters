@@ -49,6 +49,15 @@
     <Filter Include="Header Files\purgatory\etape2">
       <UniqueIdentifier>{5889cc17-6ed3-4054-98f7-6d25cce09db4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\devil">
+      <UniqueIdentifier>{8a34d4a8-6cdc-484a-89b4-9e91362e32a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\devil">
+      <UniqueIdentifier>{cbdfa74d-3751-4915-9cd9-b1606bf8f953}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\devil\bind">
+      <UniqueIdentifier>{37234fa7-50b9-44e1-9538-fea876cbd59c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="charon\etape1\main.cpp">
@@ -69,6 +78,9 @@
     <ClCompile Include="purgatory\etape2\main.cpp">
       <Filter>Source Files\purgatory\etape2</Filter>
     </ClCompile>
+    <ClCompile Include="devil\main.cpp">
+      <Filter>Source Files\devil</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charon\etape1\FunctionSignature.hpp">
@@ -82,6 +94,12 @@
     </ClInclude>
     <ClInclude Include="purgatory\etape2\Machine.hpp">
       <Filter>Header Files\purgatory\etape2</Filter>
+    </ClInclude>
+    <ClInclude Include="devil\Inspector.hpp">
+      <Filter>Header Files\devil</Filter>
+    </ClInclude>
+    <ClInclude Include="devil\bind\bind.hpp">
+      <Filter>Header Files\devil\bind</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

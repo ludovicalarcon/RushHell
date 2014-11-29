@@ -66,6 +66,8 @@
   <ItemGroup>
     <ClInclude Include="charon\etape1\FunctionSignature.hpp" />
     <ClInclude Include="charon\etape2\Function.hpp" />
+    <ClInclude Include="devil\bind\bind.hpp" />
+    <ClInclude Include="devil\Inspector.hpp" />
     <ClInclude Include="purgatory\etape1\Machine.hpp" />
     <ClInclude Include="purgatory\etape2\Machine.hpp" />
   </ItemGroup>
@@ -75,11 +77,10 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="charon\etape2\main.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="devil\main.cpp" />
     <ClCompile Include="purgatory\etape1\Machine.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
