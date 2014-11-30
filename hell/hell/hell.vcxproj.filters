@@ -58,6 +58,18 @@
     <Filter Include="Header Files\devil\bind">
       <UniqueIdentifier>{37234fa7-50b9-44e1-9538-fea876cbd59c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\purgatory\etape3">
+      <UniqueIdentifier>{d4ef82fa-7a1f-445a-8783-5676f31596ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\purgatory\etape3">
+      <UniqueIdentifier>{c89ab1ed-4293-42ac-8366-ad3586d56731}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\purgatory\etape4">
+      <UniqueIdentifier>{2dadb215-e549-4210-9aae-a6ea7de7a8a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\purgatory\etape4">
+      <UniqueIdentifier>{5ac64f6f-581f-4e80-add0-032b54f0323e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="charon\etape1\main.cpp">
@@ -81,6 +93,36 @@
     <ClCompile Include="devil\main.cpp">
       <Filter>Source Files\devil</Filter>
     </ClCompile>
+    <ClCompile Include="purgatory\etape3\Edge.cpp">
+      <Filter>Source Files\purgatory\etape3</Filter>
+    </ClCompile>
+    <ClCompile Include="purgatory\etape3\FSA.cpp">
+      <Filter>Source Files\purgatory\etape3</Filter>
+    </ClCompile>
+    <ClCompile Include="purgatory\etape3\main.cpp">
+      <Filter>Source Files\purgatory\etape3</Filter>
+    </ClCompile>
+    <ClCompile Include="purgatory\etape3\Matcher.cpp">
+      <Filter>Source Files\purgatory\etape3</Filter>
+    </ClCompile>
+    <ClCompile Include="purgatory\etape3\State.cpp">
+      <Filter>Source Files\purgatory\etape3</Filter>
+    </ClCompile>
+    <ClCompile Include="purgatory\etape4\Edge.cpp">
+      <Filter>Source Files\purgatory\etape4</Filter>
+    </ClCompile>
+    <ClCompile Include="purgatory\etape4\FSA.cpp">
+      <Filter>Source Files\purgatory\etape4</Filter>
+    </ClCompile>
+    <ClCompile Include="purgatory\etape4\main.cpp">
+      <Filter>Source Files\purgatory\etape4</Filter>
+    </ClCompile>
+    <ClCompile Include="purgatory\etape4\Matcher.cpp">
+      <Filter>Source Files\purgatory\etape4</Filter>
+    </ClCompile>
+    <ClCompile Include="purgatory\etape4\State.cpp">
+      <Filter>Source Files\purgatory\etape4</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charon\etape1\FunctionSignature.hpp">
@@ -100,6 +142,30 @@
     </ClInclude>
     <ClInclude Include="devil\bind\bind.hpp">
       <Filter>Header Files\devil\bind</Filter>
+    </ClInclude>
+    <ClInclude Include="purgatory\etape3\Edge.h">
+      <Filter>Header Files\purgatory\etape3</Filter>
+    </ClInclude>
+    <ClInclude Include="purgatory\etape3\FSA.h">
+      <Filter>Header Files\purgatory\etape3</Filter>
+    </ClInclude>
+    <ClInclude Include="purgatory\etape3\Matcher.h">
+      <Filter>Header Files\purgatory\etape3</Filter>
+    </ClInclude>
+    <ClInclude Include="purgatory\etape3\State.h">
+      <Filter>Header Files\purgatory\etape3</Filter>
+    </ClInclude>
+    <ClInclude Include="purgatory\etape4\State.h">
+      <Filter>Header Files\purgatory\etape4</Filter>
+    </ClInclude>
+    <ClInclude Include="purgatory\etape4\Matcher.h">
+      <Filter>Header Files\purgatory\etape4</Filter>
+    </ClInclude>
+    <ClInclude Include="purgatory\etape4\FSA.h">
+      <Filter>Header Files\purgatory\etape4</Filter>
+    </ClInclude>
+    <ClInclude Include="purgatory\etape4\Edge.h">
+      <Filter>Header Files\purgatory\etape4</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

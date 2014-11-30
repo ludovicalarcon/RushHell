@@ -1,6 +1,6 @@
 #pragma once
 
-enum eState
+enum				eState
 {
 	S0,
 	S1,
@@ -13,15 +13,15 @@ enum eState
 	STATE_ERROR
 };
 
-enum eAction
+enum				eAction
 {
 	MA,
 	HR,
 	ACTION_ERROR
 };
 
-#define STATE_MAX	9
-#define EDGE_MAX	8
+#define STATE_MAX	STATE_ERROR + 1
+#define EDGE_MAX	sizeof("mechant")	
 
-extern eState	gStateTable[STATE_MAX][EDGE_MAX];
-extern eAction	gActionTable[STATE_MAX][EDGE_MAX];
+extern eState		gStateTable[STATE_MAX][EDGE_MAX];
+extern eAction		gActionTable[STATE_MAX][EDGE_MAX];

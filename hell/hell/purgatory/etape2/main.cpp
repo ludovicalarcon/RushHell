@@ -1,46 +1,53 @@
+#include <string>
 #include <string.h>
 #include <iostream>
-#include <string>
 
 #include "Machine.hpp"
 
-int	main(int argc, unsigned char *argv[])
+int						main(int ac, char **av)
 {
-	unsigned char	*str = (unsigned char*)"mechant";
-	char	trans[256];
+	eState				currentState = S0;
+	std::string			token;
+	char				*str;
+	char				curr[256];
+	int					i = 0;
 
-	if (argc > 1)
-		str = argv[1];
-	memset(trans, 7, sizeof(trans));
-	trans['m'] = 0;
-	trans['e'] = 1;
-	trans['c'] = 2;
-	trans['h'] = 3;
-	trans['a'] = 4;
-	trans['n'] = 5;
-	trans['t'] = 6;
-
-	eState current = S0;
-	std::string token;
-
-	int i = 0;
-	while (1)
+	if (ac < 2)
 	{
-		switch (gActionTable[current][trans[str[i]]])
+		std::cerr << "Usage : [./test_fsa] [string]" << std::endl;
+		return (1);
+	}
+	memset(curr, 7, sizeof(curr));
+	curr['m'] = 0;
+	curr['e'] = 1;
+	curr['c'] = 2;
+	curr['h'] = 3;
+	curr['a'] = 4;
+	curr['n'] = 5;
+	curr['t'] = 6;
+	for (;;)
+	{
+		switch (gActionTable[currentState][curr[av[1][i]]])
 		{
 		case ACTION_ERROR:
-			std::cout << str[i] << ": ACTION_ERROR" << std::endl;
-			return (!str[i]);
+			if (av[1][i] == 0)
+				return (0);
+			std::cerr << "Action error: " << av[1][i] << std::endl;
+			token.clear();
+			if (currentState == S0)
+				++i;
+			currentState = S0;
 			break;
 		case MA:
-			current = gStateTable[current][trans[str[i]]];
-			token += str[i];
+			currentState = gStateTable[currentState][curr[av[1][i]]];
+			token += av[1][i];
 			++i;
 			break;
 		case HR:
+			currentState = S0;
 			std::cout << token << std::endl;
 			token.clear();
-			current = S0;
+			break;
 		}
 	}
 	return (0);
