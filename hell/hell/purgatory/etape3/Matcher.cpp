@@ -14,9 +14,11 @@ bool			Matcher::find(std::string const &str, int &rec)
 {
 	std::string token;
 	int			current = 0;
+	unsigned int i = 0;
 
 	rec = 0;
-	unsigned int i = 0;
+	if (str.size() == 0)
+		return (false);
 	while (i < str.size())
 	{
 		Edge edge(str[i]);
