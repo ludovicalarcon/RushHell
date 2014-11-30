@@ -1,4 +1,5 @@
 #include "Matcher.h"
+#include "ExpressionParser.h"
 
 Matcher::Matcher(FSA &fsa) : _fsa(fsa) {}
 
@@ -61,35 +62,36 @@ bool			Matcher::find(std::string const &str, int &rec)
 
 void			Matcher::init(std::string const &str)
 {
-	State *state = &_fsa.begin();
-	State *newState = (str.size() == 1 ? &_fsa.end() : State::create(false));
-	for (unsigned int i = 0; i < str.size(); ++i)
-	{
-		std::map<std::string, Edge> const	*list = &state->getLinks();
-		std::map<std::string, Edge>::const_iterator it = list->begin(); 
-		while (it != list->end())
-		{
-			if (it->second.getKey() == str[i])
-			{
-				state = &_fsa[it->first];
-				list = &state->getLinks();
-				it = list->begin();
-				++i;
-				continue;
-			}
-			++it;
-		}
+	ExpressionParser::setFSA(_fsa, str);
+	//State *state = &_fsa.begin();
+	//State *newState = (str.size() == 1 ? &_fsa.end() : State::create(false));
+	//for (unsigned int i = 0; i < str.size(); ++i)
+	//{
+	//	std::map<std::string, Edge> const	*list = &state->getLinks();
+	//	std::map<std::string, Edge>::const_iterator it = list->begin(); 
+	//	while (it != list->end())
+	//	{
+	//		if (it->second.getKey() == str[i])
+	//		{
+	//			state = &_fsa[it->first];
+	//			list = &state->getLinks();
+	//			it = list->begin();
+	//			++i;
+	//			continue;
+	//		}
+	//		++it;
+	//	}
 
-		Edge edge(str[i]);
-		state->move(*newState, edge);
-		if (i != str.size() - 1)
-		{
-			_fsa.addState(*newState);
-			state = newState;
-			if (i == str.size() - 2)
-				newState = &_fsa.end();
-			else
-				newState = State::create(false);
-		}
-	}
+	//	Edge edge(str[i]);
+	//	state->move(*newState, edge);
+	//	if (i != str.size() - 1)
+	//	{
+	//		_fsa.addState(*newState);
+	//		state = newState;
+	//		if (i == str.size() - 2)
+	//			newState = &_fsa.end();
+	//		else
+	//			newState = State::create(false);
+	//	}
+	//}
 }

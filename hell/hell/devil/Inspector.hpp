@@ -5,8 +5,8 @@
 
 template <typename Stream, typename Object> struct IsPrintable
 {
-	typedef char	Yes[1];
-	typedef char	No[2];
+	typedef char	Yes[2];
+	typedef char	No[1];
 
 	static const bool ISPRINTABLE = (sizeof(*(Stream*)0 << *(Object*)0) != sizeof(No));
 };

@@ -78,6 +78,11 @@
     <ClInclude Include="purgatory\etape4\FSA.h" />
     <ClInclude Include="purgatory\etape4\Matcher.h" />
     <ClInclude Include="purgatory\etape4\State.h" />
+    <ClInclude Include="purgatory\etape6\Edge.h" />
+    <ClInclude Include="purgatory\etape6\ExpressionParser.h" />
+    <ClInclude Include="purgatory\etape6\FSA.h" />
+    <ClInclude Include="purgatory\etape6\Matcher.h" />
+    <ClInclude Include="purgatory\etape6\State.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="charon\etape1\main.cpp">
@@ -128,11 +133,32 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="purgatory\etape4\Edge.cpp" />
-    <ClCompile Include="purgatory\etape4\FSA.cpp" />
-    <ClCompile Include="purgatory\etape4\main.cpp" />
-    <ClCompile Include="purgatory\etape4\Matcher.cpp" />
-    <ClCompile Include="purgatory\etape4\State.cpp" />
+    <ClCompile Include="purgatory\etape4\Edge.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="purgatory\etape4\FSA.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="purgatory\etape4\main.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="purgatory\etape4\Matcher.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="purgatory\etape4\State.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="purgatory\etape6\Edge.cpp" />
+    <ClCompile Include="purgatory\etape6\ExpressionParser.cpp" />
+    <ClCompile Include="purgatory\etape6\FSA.cpp" />
+    <ClCompile Include="purgatory\etape6\main.cpp" />
+    <ClCompile Include="purgatory\etape6\Matcher.cpp" />
+    <ClCompile Include="purgatory\etape6\State.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
